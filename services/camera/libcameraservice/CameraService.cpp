@@ -544,7 +544,6 @@ Status CameraService::getCameraCharacteristics(const String16& cameraId,
                                 String8(cameraId).string());
 
     }
-
     Status ret{};
     status_t res = mCameraProviderManager->getCameraCharacteristics(
             String8(cameraId).string(), cameraInfo);
@@ -3325,6 +3324,7 @@ void CameraService::updateStatus(StatusInternal status, const String8& cameraId,
         return;
     }
     bool isHidden = isPublicallyHiddenSecureCamera(cameraId);
+
     bool supportsHAL3 = false;
     // supportsCameraApi also holds mInterfaceMutex, we can't call it in the
     // HIDL onStatusChanged wrapper call (we'll hold mStatusListenerLock and
